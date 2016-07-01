@@ -3,9 +3,8 @@
 angular.module('musicContractorApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('profile', {
-        url: '/profile',
-        template: '<profile></profile>',
-        authenticate: true
+      .state('editProfile', {
+        url: '/profile/edit',
+        template: '<edit-profile></edit-profile>'
       });
   });

@@ -2,8 +2,11 @@
 (function(){
 
 class EventComponent {
-  constructor($stateParams) {
+  constructor($stateParams, $state) {
     this.message = 'Hello';
+//create post function
+    // redirects to event page for specified id
+    // $state.go('event', { id: id});
   }
 }
 

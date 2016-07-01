@@ -2,15 +2,18 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('musicians', function(table) {
     table.increments();
+    table.text('full_name');
+    table.integer('user_id');
+    table.text('email');
     table.text('bio');
+    table.varchar('phone', 12);
     table.text('imageURL');
+    table.integer('state');
     table.boolean('principal').defaultTo(false);
     table.boolean('soloist').defaultTo(false);
     table.boolean('jazz').defaultTo(false);
     table.boolean('classical').defaultTo(false);
     table.text('adminNote');
-    table.integer('user_id').unsigned().references('id').inTable('users').onDelete('cascade');
-    table.integer('primary_instrument_id').unsigned().references('id').inTable('instruments').onDelete('cascade');
   });
 };
 

@@ -4,6 +4,7 @@ class SettingsController {
 
   constructor(Auth) {
     this.Auth = Auth;
+    console.log(this.user)
   }
 
   changePassword(form) {
