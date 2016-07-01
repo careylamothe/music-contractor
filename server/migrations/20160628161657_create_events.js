@@ -7,7 +7,8 @@ exports.up = function(knex, Promise) {
     table.text('description');
     table.text('venue');
     table.text('address');
-    table.dateTime('date_time');
+    table.text('date');
+    table.text('time');
     table.text('notes');
     table.integer('minutes');
     table.integer('num_services');

@@ -10,10 +10,12 @@ class ProfileComponent {
   }
 
   $onInit() {
-    this.$http.get('/api/musicians')
+    var currentId = $stateParams.id;
+
+    this.$http.get('/api/musicians/:id')
       .then(response => {
         console.log(response.data);
-        this.awesomeThings = response.data;
+        this.musicianProfile = response.data;
       });
   }
   //check for id in url, if no id then current user

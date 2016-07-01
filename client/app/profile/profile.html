@@ -1,39 +1,19 @@
-<div class="row">
-  <h1>Create Musician Profile</h1>
+<div class="">
+  <div class="row">
+    <h3>Musician Profile</h3>
+  </div>
 
-  <form class="col s12" action="" method="post">
-
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="name" type="text" class="validate" ng-model="musicianForm.name">
-        <label for="name">Full Name</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="main-instrument" type="text" class="validate" ng-model="musicianForm.main">
-        <label for="main-instrument">Main Instrument</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="input-field col s12">
-        <textarea id="other-instrments" class="materialize-textarea" ng-model="musicianForm.other"></textarea>
-        <label for="other-instruments">List other instruments</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="input-field col s6">
-        <textarea id="bio" class="mateialize-textarea" ng-model="musicianForm.bio"></textarea>
-        <label for="bio">Add a brief bio</label>
-      </div>
-    </div>
-
-    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-      <i class="material-icons right">send</i>
-    </button>
-
-  </form>
+  <div class="row">
+    <h2>{{  musician.name }}</h2>
+  </div>
+  <div class="row">
+    <p>
+      Main instrument: {{ musician.main }}
+    </p>
+  </div>
+  <div class="row">
+    <p>
+      
+    </p>
+  </div>
 </div>

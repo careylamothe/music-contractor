@@ -13,7 +13,7 @@ class EditProfileComponent {
       console.log(this.post);
       this.$http.post('/api/musicians', {
         name: this.post.name,
-        mainInstrument: this.post.mainInstrument,
+        main: this.post.mainInstrument,
         image: this.post.imageURL,
         additionalInstruments: this.post.otherInstrumetns,
         bio: this.post.bio

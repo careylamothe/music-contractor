@@ -1,7 +1,7 @@
 <div class="row">
   <h2>Create Event</h2>
 
-  <form class="col s12" action="" method="post">
+  <form class="col s12" ng-submit="submit()" method="post">
 
     <div class="row">
       <div class="input-field col s12">
@@ -15,8 +15,9 @@
         <input id="date" type="date" class="datepicker" ng-model="eventForm.date">
         <label for="date">Date</label>
       </div>
+
       <div class="input-field col s3">
-        <input id="time" type="text" ng-model="eventForm.time">
+        <input id="time" input-clock data-twelvehour="false" type="text" ng-model="eventForm.time">
         <label for="time">Time</label>
       </div>
     </div>
@@ -43,4 +44,34 @@
     </button>
 
   </form>
+</div>
+
+<div class="main">
+
+  <div class="row">
+    <div class="col s6">
+      <div id="eventsById" class="" ng-repeat="event in $state.events">
+        <h4>{{ event.title }}</h4>
+        <p>{{ event.date }} {{ event.time }}</p>
+        <p>{{ event.venue }}</p>
+        <p>{{  event.address }}<p>
+        <p>{{  event.rehearsals }}</p>
+      </div>
+    </div>
+
+    <div class="col s6">
+      <div id="musicians" class="" ng-repeat="musician in $state.musicians">
+        <h3><a src="{{ /profile::id }}"></a>{{ musician.name }}</h3>
+        <h4>{{ musician.main }}</h4>
+        <img src="{{ mucician.image }}" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="">
+      <a class="waves-effect waves-light btn">Create Event</a>
+    </div>
+  </div>
+
 </div>
