@@ -19,8 +19,8 @@ class EventComponent {
         address: this.post.address,
         rehearsals: this.post.notes
       }).then(function () {
-        $state.go('event', { id: id}):
-      })
+        $state.go('event', { id: id})
+      });
     }
   }
 
@@ -35,7 +35,7 @@ class EventComponent {
 
 }
 
-}
+
 
 angular.module('musicContractorApp')
   .component('event', {

@@ -8,6 +8,7 @@ exports.up = function(knex, Promise) {
     table.text('bio');
     table.varchar('phone', 12);
     table.text('imageURL');
+    table.text('primary_inst_id');
     table.integer('state');
     table.boolean('principal').defaultTo(false);
     table.boolean('soloist').defaultTo(false);

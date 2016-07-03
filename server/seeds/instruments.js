@@ -1,13 +1,25 @@
 
 exports.seed = function(knex, Promise) {
+  return knex.raw('ALTER SEQUENCE instruments_id_seq restsart with 4').then(function() {
+    return knex('instruments').del()
+  })
   // Deletes ALL existing entries
-  return knex('table_name').del()
     .then(function () {
       return Promise.all([
         // Inserts seed entries
-        knex('table_name').insert({id: 1, colName: 'rowValue1'}),
-        knex('table_name').insert({id: 2, colName: 'rowValue2'}),
-        knex('table_name').insert({id: 3, colName: 'rowValue3'})
+        knex('instruments').insert({
+          id: 1,
+          name: 'trumpet'
+        }),
+
+        knex('instruments').insert({
+          id: 2,
+          name: 'cello',
+        }),
+
+        knex('instruments').insert({
+          id: 3,
+          colName: 'French horn'})
       ]);
     });
 };
