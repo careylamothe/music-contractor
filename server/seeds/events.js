@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise) {
           date: 'July 3rd 2016',
           time: '4:00PM',
           notes: 'June 30th, 7:00pm; June 28th 7:00pm Roosevelt H.S',
-          payment: '$200'
+          payment: '200'
         }),
 
         knex('events').insert({
@@ -24,7 +24,7 @@ exports.seed = function(knex, Promise) {
           date: 'August 23rd 2016',
           time: '7:00PM',
           notes: 'July 30th, 7:00pm; August 4th 7:00pm North Seattle College',
-          payment: '$175'
+          payment: '175'
         }),
 
         knex('events').insert({
@@ -35,7 +35,7 @@ exports.seed = function(knex, Promise) {
           date: 'September 9th 2016',
           time: '2:00PM',
           notes: 'Sept 1st, 7:00pm; Sept 3rd 7:00pm University of Washington Meany 200',
-          payment: '$150'
+          payment: '150'
         })
       ]);
     })

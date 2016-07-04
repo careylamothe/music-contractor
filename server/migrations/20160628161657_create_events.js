@@ -12,7 +12,7 @@ exports.up = function(knex, Promise) {
     table.text('notes');
     table.integer('minutes');
     table.integer('num_services');
-    table.integer('budget');
+    table.integer('payment');
   });
 };
 

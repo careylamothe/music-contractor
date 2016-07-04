@@ -7,20 +7,17 @@ exports.seed = function(knex, Promise) {
   }).then(function () {
       return Promise.all([
         // Inserts seed entries
-        knex('table_name').insert({
-          id: 1,
+        knex('musicians_events').insert({
           musician_id: 1,
           event_id: 1
         }),
 
         knex('musicians_events').insert({
-          id: 2,
           musician_id: 2,
           event_id: 2
         }),
 
         knex('musicians_events').insert({
-          id: 3,
           musician_id: 3,
           event_id: 3
         })
