@@ -22,10 +22,10 @@ class SignupController {
       //   if(musician) {
       //
       // }
-      //   .then(() => {
-      //     Account created, redirect to profile
-      //     this.$state.go('editProfile');
-      //   })
+        .then(() => {
+          Account created, redirect to profile
+          this.$state.go('editProfile');
+        })
 
         // /else if(organizer) {
         //

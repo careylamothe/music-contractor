@@ -29,19 +29,21 @@ router.get('/:id', function(req, res) {
   })
 });
 
-// router.post('/', function(req, res) {
-//   Musicians().insert({
-//     full_name: req.body.full_name,
-//     email: req.body.email,
-//     bio: req.body.bio,
-//     imageURL: req.body.imageURL
-//   }, 'id').then(function(instrument) {
-//     Instruments().insert({
-//       instrument: req.body.instrument
-//     }).then(function (ids) {
-//     res.json({ id: ids[0]});
-//   });
-// });
+router.post('/', function(req, res) {
+  Musicians().insert({
+    first: req.body.first,
+    last: req.body.last,
+    email: req.body.email,
+    bio: req.body.bio,
+    imageURL: req.body.imageURL
+  }, 'id').then(function(instrument) {
+    Instruments().insert({
+      name: req.body.name
+    }, 'id').then(function (ids) {
+      res.json({ id: ids[0]});
+    });
+  });
+});
 //
 // router.put('/:id/update', function(req, res) {
 //   Musicians().where('id', req.params.user_id).update({

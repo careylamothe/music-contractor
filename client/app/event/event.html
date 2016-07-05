@@ -7,43 +7,45 @@
 
     <div class="row">
       <div class="input-field col s12">
-        <input id="title" type="text" class="validate" ng-model="eventForm.title">
+        <input id="title" type="text" class="validate" ng-model="vm.event.title">
         <label for="title">Title</label>
       </div>
     </div>
 
     <div class="row">
       <div class="input-field col s3">
-        <input id="date" type="date" class="datepicker" ng-model="eventForm.date">
+        <input id="date" type="date" class="datepicker" ng-model="vm.event.date">
         <label for="date">Date</label>
       </div>
 
       <div class="input-field col s3">
-        <input id="time" input-clock data-twelvehour="false" type="text" ng-model="eventForm.time">
+        <input id="time" input-clock data-twelvehour="false" type="text" ng-model="vm.event.time">
         <label for="time">Time</label>
       </div>
     </div>
 
     <div class="row">
       <div class="input-field col s6">
-        <input placeholder="Name of venue" id="venue" type="text" class="validate" ng-model="eventForm.venue">
+        <input placeholder="Name of venue" id="venue" type="text" class="validate" ng-model="vm.event.venue">
         <label for="first_name">Venue</label>
       </div>
       <div class="input-field col s6">
-        <input placeholder="Venue address" id="address" type="text" class="validate" ng-model="eventForm.address">
+        <input placeholder="Venue address" id="address" type="text" class="validate" ng-model="vm.event.address">
       </div>
     </div>
 
     <div class="row">
       <div class="input-field col s6">
-        <textarea id="rehearsals" class="mateialize-textarea" ng-model="eventForm.rehearsals"></textarea>
+        <textarea id="rehearsals" class="mateialize-textarea" ng-model="vm.event.rehearsals"></textarea>
         <label for="rehearsals">list rehearsal dates, times, and locations</label>
       </div>
     </div>
 
-    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-      <i class="material-icons right">send</i>
-    </button>
+    <div class="row">
+      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
 
   </form>
 </div>
