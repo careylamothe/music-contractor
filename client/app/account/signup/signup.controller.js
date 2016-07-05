@@ -19,10 +19,20 @@ class SignupController {
           email: this.user.email,
           password: this.user.password
         })
-        .then(() => {
-          // Account created, redirect to home
-          this.$state.go('main');
-        })
+      //   if(musician) {
+      //
+      // }
+      //   .then(() => {
+      //     Account created, redirect to profile
+      //     this.$state.go('editProfile');
+      //   })
+
+        // /else if(organizer) {
+        //
+        //  }
+        //   .then(() => {
+        //     this.$state.go('event')
+        //   })
         .catch(err => {
           err = err.data;
           this.errors = {};

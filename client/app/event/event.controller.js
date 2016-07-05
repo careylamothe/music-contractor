@@ -4,11 +4,8 @@
 class EventComponent {
   constructor($stateParams, $state) {
     this.message = 'Hello';
-//create post function
-    // redirects to event page for specified id
-    // $state.go('event', { id: id});
-  }
-  submit() {
+
+  submitEvent() {
     if (this.post) {
       console.log(this.post);
       this.$http.post('/api/events', {
@@ -34,8 +31,6 @@ class EventComponent {
   }
 
 }
-
-
 
 angular.module('musicContractorApp')
   .component('event', {

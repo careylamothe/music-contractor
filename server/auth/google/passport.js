@@ -26,6 +26,9 @@ export function setup(User, config) {
           .then(user => done(null, user))
           .catch(err => done(err));
       })
+
+//insert id into organizer or musician table
+
       .catch(err => done(err));
   }));
 }

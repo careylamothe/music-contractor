@@ -12,10 +12,11 @@ class EditProfileComponent {
     if (this.post) {
       console.log(this.post);
       this.$http.post('/api/musicians', {
-        name: this.post.name,
-        main: this.post.mainInstrument,
+        name: this.post.first,
+        last: this.post.last,
+        main: this.post.primary_inst_id,
         image: this.post.imageURL,
-        additionalInstruments: this.post.otherInstrumetns,
+        additionalInstruments: this.post.adminNote,
         bio: this.post.bio
       });
     };

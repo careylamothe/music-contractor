@@ -18,14 +18,16 @@ router.get('/', function(req, res) {
   })
 });
 
-// router.get('/:id', function(req, res) {
-//   Musicians().where('id', req.params.user_id).first().then(function(musician) {
-//     res.json(profile)
-//   }).catch(function(error) {
-//     res.status(500)
-//     res.json(error)
-//   })
-// });
+router.get('/:id', function(req, res) {
+  // Musicians().where('id', req.params.user_id).first().then(function(musician) {
+
+  Musicians().where({ id: req.params.id }).first().then(function(musician) {
+    res.json(musician)
+  }).catch(function(error) {
+    res.status(500)
+    res.json(error)
+  })
+});
 
 // router.post('/', function(req, res) {
 //   Musicians().insert({

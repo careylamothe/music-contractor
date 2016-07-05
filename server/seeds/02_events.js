@@ -1,8 +1,8 @@
 
 exports.seed = function(knex, Promise) {
-  return knex.raw('ALTER SEQUENCE events_id_seq restart with 4').then(function() {
-    return knex('events').del()
-  }).then(function () {
+  return knex('events').del().then(function() {
+    return knex.raw('ALTER SEQUENCE events_id_seq restart with 4')
+    .then(function () {
       return Promise.all([
         // Inserts seed entries
         knex('events').insert({
@@ -38,5 +38,6 @@ exports.seed = function(knex, Promise) {
           payment: '150'
         })
       ]);
-    })
+    });
+  })
 };

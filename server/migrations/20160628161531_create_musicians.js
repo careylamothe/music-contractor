@@ -2,13 +2,14 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('musicians', function(table) {
     table.increments();
-    table.text('full_name');
     table.integer('user_id');
+    table.text('first');
+    table.text('last');
     table.text('email');
     table.text('bio');
     table.varchar('phone', 12);
     table.text('imageURL');
-    table.integer('primary_inst_id').unsigned().references('id').inTable('instruments').onDelete('cascade');
+    table.integer('primary_inst_id');
     table.integer('state');
     table.boolean('principal').defaultTo(false);
     table.boolean('soloist').defaultTo(false);
