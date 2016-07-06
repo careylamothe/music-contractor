@@ -2,13 +2,18 @@
 (function(){
 
 class EventComponent {
-  constructor($stateParams, $state) {
+  constructor($stateParams, $state, $http) {
     this.message = 'Hello';
     this.$state = $state;
+    this.events = [];
+    this.$stateParams = $stateParams;
+    this.$http = $http;
+  }
 
   submitEvent() {
-    if (this.post) {
-      console.log(this.post);
+    console.log(this);
+    if (this.event) {
+      console.log(this.event);
       this.$http.post('/api/events', {
         title: this.event.title,
         date: this.event.date,
@@ -16,18 +21,19 @@ class EventComponent {
         venue: this.event.venue,
         address: this.event.address,
         rehearsals: this.event.notes
-      }).then(function () {
-        $state.go('event', { id: id})
+      }).then(() => {
+        this.$state.go('event', {id: id})
       });
     }
   }
 
+
   $onInit() {
-    var currentId = $stateParams.id;
+    var currentId = this.$stateParams.id;
 
     this.$http.get('api/events')
-    .then(function (response) {
-      console.log(resoponse.data)
+    .then((response) => {
+      this.events.push(...response.data);
     })
   }
 
@@ -36,7 +42,8 @@ class EventComponent {
 angular.module('musicContractorApp')
   .component('event', {
     templateUrl: 'app/event/event.html',
-    controller: EventComponent
+    controller: EventComponent,
+    controllerAs: 'vm'
   });
 
 })();

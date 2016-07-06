@@ -35,26 +35,26 @@ router.post('/', function(req, res) {
     res.json({ id: ids[0] });
   });
 });
-//
-// router.put('/:id/update', function(req, res) {
-//   Events().where('id', req.params.user_id).update({
-//     title: req.body.title,
-//     date: req.body.date,
-//     time: req.body.time,
-//     venue: req.body.venue,
-//     address:req.body.address,
-//     notes: req.body.notes
-//   }).then(function(updated) {
-//   res.json(events)
-//   })
-// });
-//
-// router.delete('/:id/delete', function(req, res) {
-//   Events().where('id', req.params.user_id).first().del()
-//   .then(function() {
-//     res.json(musicians)
-//   })
-// });
-//
-//
+
+router.put('/:id/update', function(req, res) {
+  Events().where('id', req.params.user_id).update({
+    title: req.body.title,
+    date: req.body.date,
+    time: req.body.time,
+    venue: req.body.venue,
+    address:req.body.address,
+    notes: req.body.notes
+  }).then(function(updated) {
+  res.json(events)
+  })
+});
+
+router.delete('/:id/delete', function(req, res) {
+  Events().where('id', req.params.user_id).first().del()
+  .then(function() {
+    res.json(musicians)
+  })
+});
+
+
 module.exports = router;

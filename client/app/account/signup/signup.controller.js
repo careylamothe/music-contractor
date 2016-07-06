@@ -23,7 +23,7 @@ class SignupController {
       //
       // }
         .then(() => {
-          Account created, redirect to profile
+          // Account created, redirect to profile
           this.$state.go('editProfile');
         })
 

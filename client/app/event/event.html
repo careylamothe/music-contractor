@@ -3,7 +3,7 @@
     <h2>Create Event</h2>
   </div>
 
-  <form class="col s12" ng-submit="submitEvent()" method="post">
+  <form class="col s12" ng-submit="vm.submitEvent()" method="post">
 
     <div class="row">
       <div class="input-field col s12">
@@ -54,8 +54,8 @@
 
   <div class="row">
     <div class="col s6">
-      <div id="eventsById" class="" ng-repeat="event in $state.events">
-        <h4>{{ event.title }}</h4>
+      <div id="eventsById" class="" ng-repeat="event in vm.events">
+        <a ui-sref="event({id: event.id})"><h4>{{ event.title }}</h4></a>
         <p>{{ event.date }} {{ event.time }}</p>
         <p>{{ event.venue }}</p>
         <p>{{  event.address }}<p>
@@ -64,12 +64,13 @@
     </div>
 
     <div class="col s6">
-      <div id="musicians" class="" ng-repeat="musician in $state.musicians">
+      <div id="musicians" class="" ng-repeat="musician in vm.musicians">
         <h3><a src="{{ /profile/:id }}"></a>{{ musician.name }}</h3>
         <h4>{{ musician.main }}</h4>
         <img src="{{ mucician.image }}" alt="" />
       </div>
     </div>
+
   </div>
 
   <div class="row">

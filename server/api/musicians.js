@@ -44,27 +44,27 @@ router.post('/', function(req, res) {
     });
   });
 });
-//
-// router.put('/:id/update', function(req, res) {
-//   Musicians().where('id', req.params.user_id).update({
-//     full_name: req.body.full_name,
-//     email: req.body.email,
-//     bio: req.body.bio,
-//     imageURL: req.body.imageURL
-//   }).then(function(instrument) {
-//     Instruments().update({
-//       instrument: req.body.instrument
-//     }).then(function(updated) {
-//     res.json(musicians)
-//    })
-//   })
-// });
-//
-// router.delete('/:id/delete', function(req, res) {
-//   Musicians().where('id', req.params.user_id).first().del().then(function() {
-//     res.json(musicians)
-//   })
-// });
+
+router.put('/:id/update', function(req, res) {
+  Musicians().where('id', req.params.user_id).update({
+    full_name: req.body.full_name,
+    email: req.body.email,
+    bio: req.body.bio,
+    imageURL: req.body.imageURL
+  }).then(function(instrument) {
+    Instruments().update({
+      instrument: req.body.instrument
+    }).then(function(updated) {
+    res.json(musicians)
+   })
+  })
+});
+
+router.delete('/:id/delete', function(req, res) {
+  Musicians().where('id', req.params.user_id).first().del().then(function() {
+    res.json(musicians)
+  })
+});
 
 
 module.exports = router;
