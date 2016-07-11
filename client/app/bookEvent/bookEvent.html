@@ -1,0 +1,55 @@
+
+<div class="container">
+  <div class="row">
+    <h2 class="title" >Book Event</h2>
+  </div>
+
+  <div class="row">
+    <h4>{{ vm.event.title }}</h4>
+    <p><strong>Date: </strong>{{ vm.event.date }} <strong>Time: </strong>{{ vm.event.time }}</p>
+    <p><strong>Venue: </strong>{{ vm.event.venue }}</p>
+    <p><strong>Address: </strong>{{  vm.event.address }}<p>
+    <p><strong>Rehearsal Info: </strong>{{  vm.event.notes }}</p>
+  </div>
+
+  <form class="" action="index.html" method="post">
+    <div class="row">
+      <label>Email message</label>
+      <input type="text" length="300" ng-model="email.message">
+    </div>
+    <div class="row">
+      <button class="btn waves-effect waves-light" ng-click="invite()">Invite
+      </button>
+    </div>
+  </form>
+
+
+  <div class="container">
+    <div class="col s6">
+      <div class="row">
+        <h3 class="title">Select Musicians</h3>
+        <h6>Select musician to view profile or add to event roster</h6>
+      </div>
+
+      <div class="row">
+        <div id="allMusicians" class="collection" ng-repeat="musician in vm.musicians">
+          <div class="collection-item avatar">
+            <img src="{{ musician.imageURL }}" class="circle"/>
+            <a ui-sref="profile({ id: musician.id })">{{ musician.first }} {{ musician.last }}</a>
+            <p>{{ musician.instrument }}</p>
+            <span>
+              <button class="btn waves-effect waves-light" ng-click="addToRoster()">Add
+              </button>
+              <button class="btn waves-effect waves-light" ng-click="removeFromList()">Remove
+              </button>
+            </span>
+          </div>
+        </div>
+
+
+      </div>
+
+
+  </div>
+
+</div>

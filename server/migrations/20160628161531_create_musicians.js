@@ -9,7 +9,7 @@ exports.up = function(knex, Promise) {
     table.text('bio');
     table.varchar('phone', 12);
     table.text('imageURL');
-    table.integer('primary_inst_id');
+    table.text('instrument');
     table.integer('state');
     table.boolean('principal').defaultTo(false);
     table.boolean('soloist').defaultTo(false);

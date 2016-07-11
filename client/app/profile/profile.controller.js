@@ -2,30 +2,37 @@
 (function(){
 
 class ProfileComponent {
-  constructor($http, Auth) {
+  constructor($http, $state, $stateParams, Auth) {
     this.message = 'Hello';
+    this.$state = $state;
     this.$http = $http;
-    this.alllPosts = []
-    console.log(Auth.getCurrentUser())
+    this.$stateParams = $stateParams;
+    this.Auth = Auth;
+    this.profile = {};
   }
 
   $onInit() {
-    var currentId = $stateParams.id;
+    console.log('hello', this.$stateParams)
+    var currentId = this.$stateParams.id;
 
-    this.$http.get('/api/musicians/:id')
+      this.$http.get('/api/musicians/' + currentId)
       .then(response => {
-        console.log(response.data);
-        this.musicianProfile = response.data;
+
+        this.musician = response.data;
+        console.log(this.musician)
       });
-  }
-  //check for id in url, if no id then current user
-//get current logged in users profile
+
+      //get events by musician id
+    }
+
+
 }
 
 angular.module('musicContractorApp')
   .component('profile', {
     templateUrl: 'app/profile/profile.html',
-    controller: ProfileComponent
+    controller: ProfileComponent,
+    controllerAs: 'vm'
   });
 
 })();

@@ -6,6 +6,7 @@ class EventComponent {
     this.message = 'Hello';
     this.$state = $state;
     this.events = [];
+    this.musicians = [];
     this.$stateParams = $stateParams;
     this.$http = $http;
   }
@@ -27,13 +28,17 @@ class EventComponent {
     }
   }
 
-
   $onInit() {
     var currentId = this.$stateParams.id;
 
     this.$http.get('api/events')
     .then((response) => {
       this.events.push(...response.data);
+    })
+
+    this.$http.get('api/musicians')
+    .then((response) => {
+      this.musicians.push(...response.data);
     })
   }
 
@@ -43,7 +48,8 @@ angular.module('musicContractorApp')
   .component('event', {
     templateUrl: 'app/event/event.html',
     controller: EventComponent,
-    controllerAs: 'vm'
+    controllerAs: 'vm',
+    css: 'app/app.css'
   });
 
 })();

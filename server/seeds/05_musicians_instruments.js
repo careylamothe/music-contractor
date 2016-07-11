@@ -13,8 +13,7 @@ exports.seed = function(knex, Promise) {
         knex('musicians_instruments').insert({
           id: 2,
           musician_id: 2,
-          instrument_id: 2
-        }),
+          instrument_id: 2        }),
         knex('musicians_instruments').insert({
           id: 3,
           musician_id: 3,

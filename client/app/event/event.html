@@ -1,82 +1,117 @@
-<div class="container">
+<div id="eventForm" class="container" ng-show="showForm">
   <div class="row">
-    <h2>Create Event</h2>
+    <h2 class="title" >Create Event</h2>
   </div>
 
-  <form class="col s12" ng-submit="vm.submitEvent()" method="post">
+  <div class="row">
+    <form class="col s12" ng-submit="vm.submitEvent()" method="post">
 
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="title" type="text" class="validate" ng-model="vm.event.title">
-        <label for="title">Title</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="input-field col s3">
-        <input id="date" type="date" class="datepicker" ng-model="vm.event.date">
-        <label for="date">Date</label>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="title" type="text" class="validate" ng-model="vm.event.title" regquired>
+          <label for="title">Title</label>
+        </div>
       </div>
 
-      <div class="input-field col s3">
-        <input id="time" input-clock data-twelvehour="false" type="text" ng-model="vm.event.time">
-        <label for="time">Time</label>
-      </div>
-    </div>
+      <div class="row">
+        <div class="input-field col s3">
+          <input id="date" type="date" class="datepicker" ng-model="vm.event.date">
+          <label for="date">Date</label>
+        </div>
 
-    <div class="row">
-      <div class="input-field col s6">
-        <input placeholder="Name of venue" id="venue" type="text" class="validate" ng-model="vm.event.venue">
-        <label for="first_name">Venue</label>
-      </div>
-      <div class="input-field col s6">
-        <input placeholder="Venue address" id="address" type="text" class="validate" ng-model="vm.event.address">
-      </div>
-    </div>
+        <div class="input-field col s3">
+          <label for="timepicker">Time</label>
+          <input id="timepicker" class="timepicker" type="time" ng-model="vm.event.time">
+        </div>
 
-    <div class="row">
-      <div class="input-field col s6">
-        <textarea id="rehearsals" class="mateialize-textarea" ng-model="vm.event.rehearsals"></textarea>
-        <label for="rehearsals">list rehearsal dates, times, and locations</label>
       </div>
-    </div>
 
-    <div class="row">
-      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-        <i class="material-icons right">send</i>
-      </button>
-    </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="Name of venue" id="venue" type="text" class="validate" ng-model="vm.event.venue">
+          <label for="first_name">Venue</label>
+        </div>
+        <div class="input-field col s6">
+          <input placeholder="Venue address" id="address" type="text" class="validate" ng-model="vm.event.address">
+        </div>
+      </div>
 
-  </form>
+      <div class="row">
+        <div class="input-field col s6">
+          <textarea id="rehearsals" class="mateialize-textarea" ng-model="vm.event.notes"></textarea>
+          <label for="rehearsals">Rehearsal Info</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <button class="btn waves-effect waves-light" type="submit" name="action" ng-click="showForm=false">Submit
+        </button>
+          <i class="material-icons right">send</i>
+
+        <button class="btn waves-effect waves-light" ng-click="showForm=false">Cancel
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
 </div>
 
-<div class="main">
-
+<div id="main" class="container">
   <div class="row">
     <div class="col s6">
-      <div id="eventsById" class="" ng-repeat="event in vm.events">
-        <a ui-sref="event({id: event.id})"><h4>{{ event.title }}</h4></a>
-        <p>{{ event.date }} {{ event.time }}</p>
-        <p>{{ event.venue }}</p>
-        <p>{{  event.address }}<p>
-        <p>{{  event.rehearsals }}</p>
+
+      <div class="container">
+        <div class="row">
+          <h2 class="title">Events</h2>
+          <h6>Select event to edit</h>
+        </div>
+
+        <div class="row">
+          <div class="">
+            <a ng-click="showForm=true"class="waves-effect waves-light btn">Create New Event</a>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div id="eventsById" class="" ng-repeat="event in vm.events">
+            <a ui-sref="bookEvent({id: event.id})"><h4>{{ event.title }}</h4></a>
+            <p><strong>Date: </strong>{{ event.date }} <strong>Time: </strong>{{ event.time }}</p>
+            <p><strong>Venue: </strong>{{ event.venue }}</p>
+            <p><strong>Address: </strong>{{  event.address }}<p>
+            <p><strong>Rehearsal Info: </strong>{{  event.notes }}</p>
+          </div>
+
+        </div>
       </div>
-    </div>
 
-    <div class="col s6">
-      <div id="musicians" class="" ng-repeat="musician in vm.musicians">
-        <h3><a src="{{ /profile/:id }}"></a>{{ musician.name }}</h3>
-        <h4>{{ musician.main }}</h4>
-        <img src="{{ mucician.image }}" alt="" />
       </div>
+
+    <div class="container">
+
+      <div class="col s6">
+        <div class="row">
+          <h3 class="title">Browse Musicians</h3>
+          <h6>Select musician to view profile and email</h6>
+        </div>
+
+        <div class="row">
+          <div id="allMusicians" class="collection" ng-repeat="musician in vm.musicians">
+            <div class="collection-item avatar">
+              <img src="{{ musician.imageURL }}" class="circle"/>
+              <a ui-sref="profile({ id: musician.id })"><span>{{ musician.first }} {{ musician.last }}</span></a>
+              <p>{{ musician.instrument }}</p>
+            </div>
+          </div>
+        </div>
+
+
     </div>
 
-  </div>
-
-  <div class="row">
-    <div class="">
-      <a class="waves-effect waves-light btn">Create New Event</a>
     </div>
+
   </div>
 
 </div>

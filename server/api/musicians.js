@@ -5,9 +5,6 @@ var knex = require('../db/knex.js')
 function Musicians() {
   return knex('musicians');
 }
-function Instruments() {
-  return knex('instruments');
-}
 
 router.get('/', function(req, res) {
   Musicians().then(function (musicians) {
@@ -19,9 +16,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/:id', function(req, res) {
-  // Musicians().where('id', req.params.user_id).first().then(function(musician) {
-
-  Musicians().where({ id: req.params.id }).first().then(function(musician) {
+  Musicians().where('id', req.params.id ).first().then(function(musician) {
     res.json(musician)
   }).catch(function(error) {
     res.status(500)
@@ -35,13 +30,10 @@ router.post('/', function(req, res) {
     last: req.body.last,
     email: req.body.email,
     bio: req.body.bio,
-    imageURL: req.body.imageURL
-  }, 'id').then(function(instrument) {
-    Instruments().insert({
-      name: req.body.name
-    }, 'id').then(function (ids) {
+    imageURL: req.body.imageURL,
+    instrument: req.body.instrument
+  }, 'id').then(function (ids) {
       res.json({ id: ids[0]});
-    });
   });
 });
 
@@ -51,12 +43,8 @@ router.put('/:id/update', function(req, res) {
     email: req.body.email,
     bio: req.body.bio,
     imageURL: req.body.imageURL
-  }).then(function(instrument) {
-    Instruments().update({
-      instrument: req.body.instrument
-    }).then(function(updated) {
+  }).then(function(updated) {
     res.json(musicians)
-   })
   })
 });
 

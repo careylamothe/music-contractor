@@ -1,15 +1,15 @@
 <div class="container">
   <div class="row">
-    <h3>Musician Profile</h3>
+    <h3 class="title">Musician Profile</h3>
 
   </div>
 
-  <form class="col s12" ng-submit="submit()" method="post">
+  <form class="col s12" ng-submit="vm.submit()" method="post">
 
     <div class="row">
       <div class="input-field col s6">
         <input id="first" type="text" class="validate" ng-model="musicianForm.first">
-        <label for="name">First Name</label>
+        <label class="title" for="name">First Name</label>
       </div>
     </div>
 
@@ -56,7 +56,7 @@
     </div>
 
     <div class="">
-      <a class="waves-effect waves-light btn">Submit</a>
+      <a ng-click="" class="waves-effect waves-light btn">Submit</a>
     </div>
 
   </form>

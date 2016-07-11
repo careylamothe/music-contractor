@@ -21,9 +21,10 @@ class LoginController {
         // if (musician) {
         //
         // }
-        .then(() => {
+        .then((user) => {
+          console.log(user);
           // Logged in, redirect to home
-          this.$state.go('profile', { id: user_id});
+          this.$state.go('profile', { id: user._id});
         })
         // else if (organizer) {
         //

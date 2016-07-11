@@ -2,22 +2,24 @@
 (function(){
 
 class EditProfileComponent {
-  constructor($http) {
+  constructor($stateParams, $state, $http) {
     this.message = 'Hello';
+    this.$state = $state;
     this.$http = $http;
-    this.alllPosts = [];
   }
 
   submit() {
-    if (this.post) {
-      console.log(this.post);
+    if (this.musician) {
+      console.log(this.musician);
       this.$http.post('/api/musicians', {
-        name: this.post.first,
-        last: this.post.last,
-        main: this.post.primary_inst_id,
-        image: this.post.imageURL,
-        additionalInstruments: this.post.adminNote,
-        bio: this.post.bio
+        name: this.musician.first,
+        last: this.musician.last,
+        name: this.musician.name,
+        imageURL: this.musician.imageURL,
+        adminNote: this.musician.adminNote,
+        bio: this.musician.bio
+      }).then(() => {
+        this.$state.go('musician', {id: id})
       });
     };
   }
@@ -26,7 +28,8 @@ class EditProfileComponent {
 angular.module('musicContractorApp')
   .component('editProfile', {
     templateUrl: 'app/profile/editProfile.html',
-    controller: EditProfileComponent
+    controller: EditProfileComponent,
+    controllerAs: 'vm'
   });
 
 })();

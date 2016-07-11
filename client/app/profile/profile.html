@@ -1,19 +1,27 @@
 <div class="container">
   <div class="row">
-    <h3>Musician Profile</h3>
+    <h3 class="title">Musician Profile</h3>
   </div>
 
   <div class="row">
-    <h2>{{  musician.name }}</h2>
-  </div>
-  <div class="row">
-    <p>
-      Main instrument: {{ musician.main }}
-    </p>
-  </div>
-  <div class="row">
-    <p>
+    <div class="col s12">
+      <div class="row">
+        <img src="{{ vm.musician.imageURL }}"/>
+      </div>
 
-    </p>
+      <div class="row">
+        <h3>{{ vm.musician.first }} {{ vm.musician.last }}</h3>
+      </div>
+
+      <div class="row">
+        <h4>{{ vm.musician.instrument }}</h4>
+      </div>
+
+      <div class="row">
+        <h4>Bio: {{ vm.musician.bio }}</h4>
+      </div>
+
+
+    </div>
   </div>
 </div>

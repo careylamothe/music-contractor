@@ -13,6 +13,7 @@ exports.up = function(knex, Promise) {
     table.integer('minutes');
     table.integer('num_services');
     table.integer('payment');
+    table.boolean('booked').defaultTo(false);
   });
 };
 
