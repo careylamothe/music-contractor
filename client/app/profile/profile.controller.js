@@ -18,9 +18,18 @@ class ProfileComponent {
         this.musician = response.data;
       });
 
-      this.$http.get('/api/musicians/' + currentId + '/join/events')
+      this.$http.get('/api/musicians/' + currentId + '/events')
       .then(response => {
         this.events = response.data;
+      })
+    }
+
+    removeProfile() {
+      this.$http.delete('api/musicians' + currentId + 'delete')
+      .then(response => {
+        this.musicians = response.data;
+      }).then(() => {
+        this.$state.go('event')
       })
     }
 

@@ -10,6 +10,10 @@ function Events() {
   return knex('events');
 }
 
+function Musician_event() {
+  return knex('musician_event');
+}
+
 router.get('/', function(req, res) {
   Musicians().then(function (musicians) {
     res.json(musicians)
@@ -42,8 +46,9 @@ router.post('/', function(req, res) {
 });
 
 //get event data related to musician.id
-router.get('/:id/join/events', function(req, res) {
-  Mucian_event().join('musicians', 'musicians.id', 'musician_id').where('event_id', req.params.id )
+router.get('/:id/events', function(req, res) {
+  Musician_event().where('event_id', req.params.id)
+  .join('musicians', 'musicians.id', 'musicians_id')
   .then(function(events) {
     res.json(events)
   }).catch(function(error) {

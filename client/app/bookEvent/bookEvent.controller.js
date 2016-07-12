@@ -7,10 +7,8 @@ class bookEventComponent {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$http = $http;
-    this.event = {};
-    this.musicians = [];
     this.mailList = [];
-
+    this.message = '';
   }
 
   addToRoster(musician) {
@@ -32,9 +30,18 @@ class bookEventComponent {
       array: this.mailList,
       message: this.message
      })
-    .then(() => {
-      this.$state.go('event', {id: this.$stateParams.id })
+
+    this.$http.get('api/events/' + this.$stateParams.id + '/musicians')
+    .then((response) => {
+      this.roster = response.data;
+      this.message = '';
+    }).then(() => {
+      this.$state.go('events/', {id: this.$stateParams.id })
     })
+  }
+
+  removeProfile(musician) {
+    this.$http.delete('')
   }
 
   $onInit() {
@@ -48,6 +55,14 @@ class bookEventComponent {
     this.$http.get('api/musicians')
     .then((response) => {
       this.musicians = response.data;
+    })
+
+    this.$http.get('api/events/' + this.$stateParams.id + '/musicians')
+    .then((response) => {
+      this.roster = response.data;
+      this.message = '';
+    }).then(() => {
+      this.$state.go('events/', {id: this.$stateParams.id })
     })
   }
 

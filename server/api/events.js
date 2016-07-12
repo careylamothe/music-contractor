@@ -44,7 +44,7 @@ router.post('/:id/invite', function(req, res) {
       promises.push(query)
     }
     Promise.all(promises).then(function() {
-      Events().where('id', req.body.array).first().then(function(event) {
+      Events().where('id', req.params.id).first().then(function(event) {
         //get email for each musician
 
         Musicians().select('email').whereIn('id', req.body.array).debug(true).then(function(emails) {
@@ -74,9 +74,19 @@ router.post('/:id/invite', function(req, res) {
     })
   })
 });
+//get roster for related event
+router.get('/:id/musicians', function(req, res) {
+  Musician_event().where('event_id', req.params.id)
+  .join('musicians', 'musicians.id', 'musician_id')
+  .then(function(roster) {
+    res.json(roster)
+  }).catch(function(error) {
+    res.status(500)
+    res.json(error)
+  })
+});
 
 //get event by organizer(id)
-
 router.get('/:id', function(req, res) {
   Events().where({ id: req.params.id }).first().then(function(anEvent) {
     res.json(anEvent)

@@ -1,25 +1,40 @@
 <div class="container">
   <div class="row">
-    <h3 class="title">Musician Profile</h3>
+    <div class="col s7">
+      <h3 class="title">Musician Profile</h3>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col s4">
+      <img style="width: 200px; height: 200px" src="{{ vm.musician.imageURL }}"/>
+    </div>
+
+    <div class="col s8">
+      <h5>{{ vm.musician.bio }}</h5>
+    </div>
   </div>
 
   <div class="row">
     <div class="col s12">
-      <div class="row">
-        <img style="width: 200px; height: 200px" src="{{ vm.musician.imageURL }}"/>
-      </div>
+      <h3>{{ vm.musician.first }} {{ vm.musician.last }}</h3>
+    </div>
+  </div>
 
-      <div class="row">
-        <h3>{{ vm.musician.first }} {{ vm.musician.last }}</h3>
-      </div>
+  <div class="row">
+    <div class="col s12">
+      <h4>{{ vm.musician.instrument }}</h4>
+    </div>
+    <div class="col s7 offset-s7">
+      <a class="flow-text" ng-click="vm.removeProfile()" href="/">Delete  | </a>
+      <a href="/profile/edit" class="flow-text" > Edit</a>
+    </div>
 
-      <div class="row">
-        <h4>{{ vm.musician.instrument }}</h4>
-      </div>
+  </div>
 
-      <div class="row">
-        <h4>{{ vm.musician.bio }}</h4>
-      </div>
+
+
 
 
     </div>

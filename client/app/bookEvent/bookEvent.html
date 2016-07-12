@@ -5,51 +5,66 @@
   </div>
 
   <div class="row">
-    <h4>{{ vm.event.title }}</h4>
-    <p><strong>Date: </strong>{{ vm.event.date }} <strong>Time: </strong>{{ vm.event.time }}</p>
-    <p><strong>Venue: </strong>{{ vm.event.venue }}</p>
-    <p><strong>Address: </strong>{{  vm.event.address }}<p>
-    <p><strong>Rehearsal Info: </strong>{{  vm.event.notes }}</p>
-  </div>
+    <div class="col s7">
+      <div class="row">
+        <h4>{{ vm.event.title }}</h4>
+        <p><strong>Date: </strong>{{ vm.event.date }} <strong>Time: </strong>{{ vm.event.time }}</p>
+        <p><strong>Venue: </strong>{{ vm.event.venue }}</p>
+        <p><strong>Address: </strong>{{  vm.event.address }}<p>
+        <p><strong>Rehearsal Info: </strong>{{  vm.event.notes }}</p>
+      </div>
 
-  <form >
-    <div class="row">
-      <label>Email message</label>
-      <input type="text" length="300" ng-model="email.message">
-    </div>
-    <div class="row">
-      <button class="btn waves-effect waves-light" ng-click="vm.invite()">Invite
-      </button>
-    </div>
-  </form>
+      <div class="row">
+        <form >
+          <div class="row">
+            <label>Email message</label>
+            <input type="text" length="100" ng-model="vm.message">
+          </div>
+          <div class="row">
+            <a class="btn waves-effect waves-light" ng-click="vm.invite()" onclick="Materialize.toast('Email sent!', 4000)">Invite
+            </a>
+          </div>
+        </form>
+      </div>
 
-
-  <div class="container">
-    <div class="col s6">
       <div class="row">
         <h3 class="title">Select Musicians</h3>
         <h6>Select musician to view profile or add to event roster</h6>
-      </div>
-
-      <div class="row">
-        <div id="allMusicians" class="collection" ng-repeat="musician in vm.musicians">
-          <div class="collection-item avatar">
-            <img src="{{ musician.imageURL }}" class="circle"/>
-            <a ui-sref="profile({ id: musician.id })">{{ musician.first }} {{ musician.last }}</a>
-            <p>{{ musician.instrument }}</p>
-            <span>
-              <button class="btn waves-effect waves-light" ng-click="vm.addToRoster(musician)" ng-show="!musician.added">Add
-              </button>
-              <button class="btn waves-effect waves-light" ng-click="vm.removeFromRoster(musician)" ng-show="musician.added">Remove
-              </button>
-            </span>
+          <div id="allMusicians" class="collection" ng-repeat="musician in vm.musicians">
+            <div class="collection-item avatar">
+              <img src="{{ musician.imageURL }}" class="circle"/>
+              <a ui-sref="profile({ id: musician.id })">{{ musician.first }} {{ musician.last }}</a>
+              <p>{{ musician.instrument }}</p>
+              <span>
+                <button class="btn waves-effect waves-light" ng-click="vm.addToRoster(musician)" ng-show="!musician.added">Add
+                </button>
+                <button class="btn waves-effect waves-light" ng-click="vm.removeFromRoster(musician)" ng-show="musician.added">Remove
+                </button>
+              </span>
+            </div>
           </div>
+      </div>
+
+    </div>
+
+    <div class="col s5">
+      <div class="">
+        <h5>Event roster</h5>
+
+        <div class="collection">
+          <li class="collection-item" ng-repeat="musician in vm.roster">
+            <a class="title" ui-sref="profile({ id: musician.id })">{{ musician.first }} {{ musician.last }}</a>
+              <span>{{ musician.instrument }}</span>
+
+              <span class="badge" ng-hide="musician.invite_status!==1">Accepted</span>
+              <span class="badge" ng-hide="musician.invite_status!==0">Pending</span>
+              <span class="badge" ng-hide="musician.invite_status!==3">Declined</span>
+            </a>
+          </li>
         </div>
-
-
       </div>
 
 
+    </div>
   </div>
-
 </div>
