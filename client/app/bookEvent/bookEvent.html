@@ -30,7 +30,7 @@
       <div class="row">
         <h3 class="title">Select Musicians</h3>
         <h6>Select musician to view profile or add to event roster</h6>
-          <div id="allMusicians" class="collection" ng-repeat="musician in vm.musicians">
+          <div id="remainingMusicians" class="collection" ng-repeat="musician in vm.musicians">
             <div class="collection-item avatar">
               <img src="{{ musician.imageURL }}" class="circle"/>
               <a ui-sref="profile({ id: musician.id })">{{ musician.first }} {{ musician.last }}</a>

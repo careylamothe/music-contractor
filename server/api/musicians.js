@@ -13,7 +13,7 @@ function Events() {
 function Musician_event() {
   return knex('musician_event');
 }
-
+//get all musicians
 router.get('/', function(req, res) {
   Musicians().then(function (musicians) {
     res.json(musicians)
@@ -22,10 +22,34 @@ router.get('/', function(req, res) {
     res.json(error)
   })
 });
-
+//get a musician by id
 router.get('/:id', function(req, res) {
   Musicians().where('id', req.params.id ).first().then(function(musician) {
     res.json(musician)
+  }).catch(function(error) {
+    res.status(500)
+    res.json(error)
+  })
+});
+
+//get all univited musicians
+router.get('/:id/notInvited', function(req, res) {
+  Musician_event().whereNotIn('event_id', req.params.id)
+  .join('musicians', 'musicians.id', 'musician_id')
+  .then(function(remaining) {
+    res.json(remaining)
+  }).catch(function(error) {
+    res.status(500)
+    res.json(error)
+  })
+});
+
+//get event data related to musician.id
+router.get('/:id/events', function(req, res) {
+  Musician_event().where('musician_id', req.params.id)
+  .join('events', 'events.id', 'event_id')
+  .then(function(gigs) {
+    res.json(gigs)
   }).catch(function(error) {
     res.status(500)
     res.json(error)
@@ -45,18 +69,6 @@ router.post('/', function(req, res) {
   });
 });
 
-//get event data related to musician.id
-router.get('/:id/events', function(req, res) {
-  Musician_event().where('event_id', req.params.id)
-  .join('musicians', 'musicians.id', 'musicians_id')
-  .then(function(events) {
-    res.json(events)
-  }).catch(function(error) {
-    res.status(500)
-    res.json(error)
-  })
-});
-
 router.put('/:id/update', function(req, res) {
   Musicians().where('id', req.params.user_id).update({
     full_name: req.body.full_name,
@@ -64,7 +76,7 @@ router.put('/:id/update', function(req, res) {
     bio: req.body.bio,
     imageURL: req.body.imageURL
   }).then(function(updated) {
-    res.json(musicians)
+    res.json(updated)
   })
 });
 

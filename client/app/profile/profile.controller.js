@@ -20,7 +20,7 @@ class ProfileComponent {
 
       this.$http.get('/api/musicians/' + currentId + '/events')
       .then(response => {
-        this.events = response.data;
+        this.gigs = response.data;
       })
     }
 

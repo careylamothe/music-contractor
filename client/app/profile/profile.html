@@ -12,7 +12,18 @@
     </div>
 
     <div class="col s8">
-      <h5>{{ vm.musician.bio }}</h5>
+      <div class="row">
+        <h5>{{ vm.musician.bio }}</h5>
+      </div>
+      <div class="row">
+        <div id="myGigs" class="" ng-repeat="event in vm.gigs">
+          <a ui-sref="bookEvent({id: event.id})"><h4>{{ event.title }}</h4></a>
+          <p><strong>Date: </strong>{{ event.date }} <strong>Time: </strong>{{ event.time }}</p>
+          <p><strong>Venue: </strong>{{ event.venue }}</p>
+          <p><strong>Address: </strong>{{  event.address }}<p>
+          <p><strong>Rehearsal Info: </strong>{{  event.notes }}</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -30,7 +41,6 @@
       <a class="flow-text" ng-click="vm.removeProfile()" href="/">Delete  | </a>
       <a href="/profile/edit" class="flow-text" > Edit</a>
     </div>
-
   </div>
 
 

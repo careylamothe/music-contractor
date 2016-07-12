@@ -76,3 +76,9 @@ angular.module('musicContractorApp')
   });
 
 })();
+
+//get uninvited musicians on init
+// this.$http.get('api/musicians/' + currentId + '/notInvited')
+// .then((response) => {
+//   this.remaining = response.data;
+// })
