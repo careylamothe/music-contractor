@@ -16,17 +16,18 @@ class bookEventComponent {
   addToRoster(musician) {
     musician.added = true;
     this.mailList.push(musician.id);
-    console.log(this.mailList)
   }
 
   removeFromRoster(musician) {
-    //iterate over array, find index, remove index
-    //if id= the id, splice to remove
-    this.mailList.pop(musician.id)
+    for (var i = 0; i < this.mailList.length; i++) {
+      if (this.mailList[i] === musician.id) {
+        this.mailList.splice([i], 1)
+      }
+    }
+    musician.added = false;
   }
 
   invite() {
-    console.log('invite fired');
     this.$http.post('api/events/' + this.$stateParams.id + '/invite', {
       array: this.mailList,
       message: this.message

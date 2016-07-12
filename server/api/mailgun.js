@@ -19,10 +19,7 @@ var mailgun = require('mailgun-js')({
 
 var from_who = 'admin@careylamothe.com';
 
-
 router.get('/:email', function(req, res) {
-  console.log('$$$$$$$$$$$$$$$$$$$$$$$$$')
-
   var data = {
     from: from_who,
     to: 'carey.lamothe@gmail.com',
@@ -40,16 +37,6 @@ router.get('/:email', function(req, res) {
 
   });
 });
-
-// router.get('/')
-
-// router.get('/validate:mail', function(req, res) {
-//   var members = [
-//     {
-//       address: req.params.mail
-//     }
-//   ];
-// })
 
 
 

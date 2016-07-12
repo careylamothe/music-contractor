@@ -2,7 +2,7 @@
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   return knex('musicians').del().then(function() {
-    return knex.raw('ALTER SEQUENCE musicians_id_seq restart with 4')
+    return knex.raw('ALTER SEQUENCE musicians_id_seq restart with 6')
     .then(function () {
       return Promise.all([
         // Inserts seed entries
@@ -31,10 +31,30 @@ exports.seed = function(knex, Promise) {
           user_id: 3,
           first: 'Phillip',
           last: 'Meyers',
-          email:  'phil@philip.com',
+          email:  'carey.lamothe@gmail.com',
           imageURL: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRpTjFmI4WXsz1Kfh_xzOjDQIKu1BRZ1ZGWp6bOYzApthkWbTLvGg',
           instrument: 'French horn',
           bio: 'Since 1980, Myers has served as Principal Horn of the New York Philharmonic and frequently appears as soloist with the orchestra. Before arriving at the New York Philharmonic, Myers was principal horn of the Atlantic Symphony Orchestra in Halifax, Nova Scotia, 1971–1974, third horn with the Pittsburgh Symphony Orchestra from 1974–1977, and Principal Horn of the Minnesota Orchestra from 1978–1980.'
+        }),
+        knex('musicians').insert({
+          id: 4,
+          user_id: 4,
+          first: 'Esther',
+          last: 'Anaya',
+          email: 'carey.lamothe@gmail.com',
+          imageURL: 'http://static1.squarespace.com/static/56710b7a9cadb635387ca8d3/5672c06f9cadb60e553eb1ab/5672c1075a566877a0571a3e/1450361101420/ESTHER+AND+VIOLIN+COLOR.jpg?format=2500w',
+          instrument: 'violin',
+          bio: "Esther calls Los Angeles her home, and it's where she's been called upon to perform with major super stars including Rhianna, Kanye West and Latin crooner Christian Castro."
+        }),
+        knex('musicians').insert({
+          id: 5,
+          user_id: 5,
+          first: 'Mark',
+          last: 'Miller',
+          email: 'carey.lamothe@gmail.com',
+          imageURL: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/1/000/275/3dc/1971a06.jpg',
+          instrument: 'trombone',
+          bio: 'I am a professional trombonist, educator, and conductor. I specialize in private brass lessons for students of all ages and ability levels. I recently graduated from the University of Southern California, Thornton School of Music with a D.M.A. in Trombone Performance.'
         })
       ]);
     });

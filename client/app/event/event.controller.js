@@ -12,9 +12,7 @@ class EventComponent {
   }
 
   submitEvent() {
-    console.log(this);
     if (this.event) {
-      console.log(this.event);
       this.$http.post('/api/events', {
         title: this.event.title,
         date: this.event.date,

@@ -19,7 +19,7 @@ function Musician_event() {
 function Musicians() {
   return knex('musicians')
 }
-
+//get all events
 router.get('/', function(req, res) {
   Events().then(function (events) {
     res.json(events)
@@ -28,15 +28,6 @@ router.get('/', function(req, res) {
     res.json(error)
   })
 });
-//
-// router.post('/:id/join/musician', function(req, res) {
-//   Mucian_event().join('musicians', 'musicians.id', 'musician_id').where('event_id', req.params.id )
-//   }).then(function(data) {
-//     res.json(data)
-//   }).catch(function(error) {
-//     res.status(500)
-//     res.json(error)
-// });
 
 router.post('/:id/invite', function(req, res) {
   console.log(req.body)
@@ -53,33 +44,32 @@ router.post('/:id/invite', function(req, res) {
       promises.push(query)
     }
     Promise.all(promises).then(function() {
-      Events().where('id', req.params.id).first().then(function(event) {
+      Events().where('id', req.body.array).first().then(function(event) {
         //get email for each musician
 
-          Musicians().select('email').whereIn('id', req.body.array).debug(true).then(function(emails) {
-            emails = emails.map(function(email) {
-              return email.email;
-            })
-            var from_who = 'admin@careylamothe.com';
-            var data = {
-              from: from_who,
-              to: emails,
-              subject: 'Upcoming gig',
-              html: req.body.message
-            }
-
-            mailgun.messages().send(data, function(err, body) {
-              if (err) {
-                console.log('got an error: ', err);
-                res.status(500);
-                res.json(err);
-              } else {
-                res.json({ message: 'invite sent' });
-                console.log(body)
-              }
-            })
+        Musicians().select('email').whereIn('id', req.body.array).debug(true).then(function(emails) {
+          emails = emails.map(function(email) {
+            return email.email;
           })
+          var from_who = 'admin@careylamothe.com';
+          var data = {
+            from: from_who,
+            to: emails,
+            subject: 'Upcoming gig',
+            html: req.body.message
+          }
 
+          mailgun.messages().send(data, function(err, body) {
+            if (err) {
+              console.log('got an error: ', err);
+              res.status(500);
+              res.json(err);
+            } else {
+              res.json({ message: 'invite sent' });
+              console.log(body)
+            }
+          })
+        })
       })
     })
   })
@@ -108,12 +98,6 @@ router.post('/', function(req, res) {
     res.json({ id: ids[0] });
   });
 });
-//
-// router.post('/:id/invite', function(req, res) {
-//   Musicians_Events('musician_id').insert('musician_id', event_id: req.params.event_id
-// }).then(function(data) {
-//   res.json(data)
-// })
 
 router.put('/:id/update', function(req, res) {
   Events().where('id', req.params.event_id).update({

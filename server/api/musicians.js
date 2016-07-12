@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var knex = require('../db/knex.js')
+var knex = require('../db/knex.js');
 
 function Musicians() {
   return knex('musicians');
+}
+
+function Events() {
+  return knex('events');
 }
 
 router.get('/', function(req, res) {
@@ -35,6 +39,17 @@ router.post('/', function(req, res) {
   }, 'id').then(function (ids) {
       res.json({ id: ids[0]});
   });
+});
+
+//get event data related to musician.id
+router.get('/:id/join/events', function(req, res) {
+  Mucian_event().join('musicians', 'musicians.id', 'musician_id').where('event_id', req.params.id )
+  .then(function(events) {
+    res.json(events)
+  }).catch(function(error) {
+    res.status(500)
+    res.json(error)
+  })
 });
 
 router.put('/:id/update', function(req, res) {
