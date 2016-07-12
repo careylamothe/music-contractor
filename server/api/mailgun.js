@@ -17,10 +17,10 @@ var mailgun = require('mailgun-js')({
   domain: [process.env.MAILGUN_DOMAIN]
 });
 
-var from_who = 'carey.lamothe@gmail.com';
+var from_who = 'admin@careylamothe.com';
 
 
-router.get('  /:email', function(req, res) {
+router.get('/:email', function(req, res) {
   console.log('$$$$$$$$$$$$$$$$$$$$$$$$$')
 
   var data = {
@@ -41,7 +41,7 @@ router.get('  /:email', function(req, res) {
   });
 });
 
-router.get('/')
+// router.get('/')
 
 // router.get('/validate:mail', function(req, res) {
 //   var members = [

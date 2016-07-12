@@ -2,6 +2,14 @@ var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex');
 
+require('dotenv').load();
+
+var mailgun = require('mailgun-js')({
+  apiKey: [process.env.MAILGUN_API_KEY],
+  domain: [process.env.MAILGUN_DOMAIN]
+});
+
+
 function Events() {
   return knex('events')
 }
@@ -30,9 +38,9 @@ router.get('/', function(req, res) {
 //     res.json(error)
 // });
 
-router.get('/:id/invite', function(req, res) {
-  console.log('/emailsssssss')
-  Musicians().whereIn( 'id', req.body.mailList ).then(function(musicians) {
+router.post('/:id/invite', function(req, res) {
+  console.log(req.body)
+  Musicians().whereIn( 'id', req.body.array ).then(function(musicians) {
     //insert each musician into musicin_event table
     var promises = [];
 
@@ -45,31 +53,33 @@ router.get('/:id/invite', function(req, res) {
       promises.push(query)
     }
     Promise.all(promises).then(function() {
-      Events().whereIn('id', req.params.id).first().then(function(event) {
+      Events().where('id', req.params.id).first().then(function(event) {
         //get email for each musician
-        for (var i = 0; i < musicians.length; i++) {
-          var emails = []
 
-          knex.select('email').from('musicians').whereIn('id', req.body.mailList).then(function(emails) {
-            emails.push(email)
-          })
-          var from_who = 'carey.lamothe@gmail.com';
-          var data = {
-            from: from_who,
-            to: emails,
-            subject: 'Upcoming gig',
-            html: req.body.message
-          }
-
-          mailgun.messages().send(data, function(err, body) {
-            if (err) {
-              console.log('got an error: ', err);
-            } else {
-              res.json({ mail: req.params.mail });
-              console.log(body)
+          Musicians().select('email').whereIn('id', req.body.array).debug(true).then(function(emails) {
+            emails = emails.map(function(email) {
+              return email.email;
+            })
+            var from_who = 'admin@careylamothe.com';
+            var data = {
+              from: from_who,
+              to: emails,
+              subject: 'Upcoming gig',
+              html: req.body.message
             }
+
+            mailgun.messages().send(data, function(err, body) {
+              if (err) {
+                console.log('got an error: ', err);
+                res.status(500);
+                res.json(err);
+              } else {
+                res.json({ message: 'invite sent' });
+                console.log(body)
+              }
+            })
           })
-        }
+
       })
     })
   })

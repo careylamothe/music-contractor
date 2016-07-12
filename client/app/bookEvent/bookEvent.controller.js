@@ -13,29 +13,26 @@ class bookEventComponent {
 
   }
 
-  addToRoster() {
-    //add to musician_events here?
-    // this.$http.post('api/events/:id/join/musician', {
-    //   id: this.muscian.id
-    // }).then(()=> {
-    
-        this.mailList.push(musician.id)
-        console.log(mailList)
+  addToRoster(musician) {
+    musician.added = true;
+    this.mailList.push(musician.id);
+    console.log(this.mailList)
   }
 
-  removeFromRoster() {
-    //delete from musician_events this.$http.delete('api/')
+  removeFromRoster(musician) {
+    //iterate over array, find index, remove index
+    //if id= the id, splice to remove
     this.mailList.pop(musician.id)
   }
 
   invite() {
     console.log('invite fired');
-    this.$http.post('api/events/:id/invite', {
+    this.$http.post('api/events/' + this.$stateParams.id + '/invite', {
       array: this.mailList,
       message: this.message
      })
     .then(() => {
-      this.$state.go('event/:id', {id: id})
+      this.$state.go('event', {id: this.$stateParams.id })
     })
   }
 

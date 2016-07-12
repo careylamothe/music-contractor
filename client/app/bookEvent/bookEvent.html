@@ -12,13 +12,13 @@
     <p><strong>Rehearsal Info: </strong>{{  vm.event.notes }}</p>
   </div>
 
-  <form class="" action="index.html" method="post">
+  <form >
     <div class="row">
       <label>Email message</label>
       <input type="text" length="300" ng-model="email.message">
     </div>
     <div class="row">
-      <button class="btn waves-effect waves-light" ng-click="invite()">Invite
+      <button class="btn waves-effect waves-light" ng-click="vm.invite()">Invite
       </button>
     </div>
   </form>
@@ -38,9 +38,9 @@
             <a ui-sref="profile({ id: musician.id })">{{ musician.first }} {{ musician.last }}</a>
             <p>{{ musician.instrument }}</p>
             <span>
-              <button class="btn waves-effect waves-light" ng-click="addToRoster()">Add
+              <button class="btn waves-effect waves-light" ng-click="vm.addToRoster(musician)" ng-show="!musician.added">Add
               </button>
-              <button class="btn waves-effect waves-light" ng-click="removeFromList()">Remove
+              <button class="btn waves-effect waves-light" ng-click="vm.removeFromList(musician)" ng-show="musician.added">Remove
               </button>
             </span>
           </div>
