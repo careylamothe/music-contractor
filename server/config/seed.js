@@ -48,14 +48,14 @@ User.sync()
   .then(() => {
     User.bulkCreate([{
       provider: 'local',
-      name: 'Test User',
-      email: 'test@example.com',
+      name: 'Musician',
+      email: 'yoyo@careylamothe.com',
       password: 'test'
     }, {
       provider: 'local',
       role: 'admin',
-      name: 'Admin',
-      email: 'admin@example.com',
+      name: 'Event Organizer',
+      email: 'admin@careylamothe.com',
       password: 'admin'
     }])
     .then(() => {

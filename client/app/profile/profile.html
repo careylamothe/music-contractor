@@ -8,7 +8,9 @@
   <div class="row">
 
     <div class="col s4">
-      <img style="width: 200px; height: 200px" src="{{ vm.musician.imageURL }}"/>
+      <img style="max-width" src="{{ vm.musician.imageURL }}"/>
+      <h3>{{ vm.musician.first }} {{ vm.musician.last }}</h3>
+      <h4>{{ vm.musician.instrument }}</h4>
     </div>
 
     <div class="col s8">
@@ -16,37 +18,24 @@
         <h5>{{ vm.musician.bio }}</h5>
       </div>
       <div class="row">
+        <h5>Gigs:</h5>
         <div id="myGigs" class="" ng-repeat="event in vm.gigs">
           <a ui-sref="bookEvent({id: event.id})"><h4>{{ event.title }}</h4></a>
+          <div class="row">
+            <button class="btn waves-effect waves-light" ng-click="vm.isAccepted = vm.isAccepted ? false : true">Accept</button>
+              <div ng-hide="vm.isAccepted"></div><br>
+
+              <button class="btn waves-effect waves-light" ng-click="vm.isAccepted = vm.isAccepted ? false : true">Decline</button>
+                <div ng-hide="!vm.isAccepted"></div>
+          </div>
+
+
           <p><strong>Date: </strong>{{ event.date }} <strong>Time: </strong>{{ event.time }}</p>
           <p><strong>Venue: </strong>{{ event.venue }}</p>
           <p><strong>Address: </strong>{{  event.address }}<p>
           <p><strong>Rehearsal Info: </strong>{{  event.notes }}</p>
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col s12">
-      <h3>{{ vm.musician.first }} {{ vm.musician.last }}</h3>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col s12">
-      <h4>{{ vm.musician.instrument }}</h4>
-    </div>
-    <div class="col s7 offset-s7">
-      <a class="flow-text" ng-click="vm.removeProfile()" href="/">Delete  | </a>
-      <a href="/profile/edit" class="flow-text" > Edit</a>
-    </div>
-  </div>
-
-
-
-
-
     </div>
   </div>
 </div>

@@ -1,29 +1,6 @@
-# music-contractor
+# [Music Contractor](https://music-contractor.herokuapp.com/
+)
+Music Contractor is a web app designed to improve the hiring process for orchestra contractors.  When an organizer of a musical production creates an event and selects musicians, an email list is created.  A call to the [Mailgun](http://www.mailgun.com/) API is then used to email those musicians and invite them to play the event in a professional and efficient way.  Musicians can then log in to their profiles to view the details of the event and accept or decline the gig.  Additional technologies include Javascript, Materialize CSS, HTML5, Angular, Node, Express, PostgreSQL, Knex and Heroku.
+
 
 This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.7.6.
-
-## Getting Started
-
-### Prerequisites
-
-- [Git](https://git-scm.com/)
-- [Node.js and npm](nodejs.org) Node ^4.2.3, npm ^2.14.7
-- [Bower](bower.io) (`npm install --global bower`)
-- [Gulp](http://gulpjs.com/) (`npm install --global gulp`)
-- [SQLite](https://www.sqlite.org/quickstart.html)
-
-### Developing
-
-1. Run `npm install` to install server dependencies.
-
-2. Run `bower install` to install front-end dependencies.
-
-3. Run `gulp serve` to start the development server. It should automatically open the client in your browser when ready.
-
-## Build & development
-
-Run `grunt build` for building and `grunt serve` for preview.
-
-## Testing
-
-Running `npm test` will run the unit tests with karma.

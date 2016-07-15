@@ -24,7 +24,7 @@ class SignupController {
       // }
         .then(() => {
           // Account created, redirect to profile
-          this.$state.go('editProfile');
+          this.$state.go('main');
         })
 
         // /else if(organizer) {

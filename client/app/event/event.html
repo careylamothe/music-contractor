@@ -8,7 +8,7 @@
 
       <div class="row">
         <div class="input-field col s12">
-          <input id="title" type="text" class="validate" ng-model="vm.event.title" regquired>
+          <input id="title" type="text" class="validate" ng-model="vm.event.title" required>
           <label for="title">Title</label>
         </div>
       </div>
@@ -16,20 +16,16 @@
       <div class="row">
         <div class="input-field col s3">
           <input id="date" type="date" class="datepicker" ng-model="vm.event.date">
-          <label for="date">Date</label>
         </div>
 
         <div class="input-field col s3">
-          <label for="timepicker">Time</label>
           <input id="timepicker" class="timepicker" type="time" ng-model="vm.event.time">
         </div>
-
       </div>
 
       <div class="row">
         <div class="input-field col s6">
           <input placeholder="Name of venue" id="venue" type="text" class="validate" ng-model="vm.event.venue">
-          <label for="first_name">Venue</label>
         </div>
         <div class="input-field col s6">
           <input placeholder="Venue address" id="address" type="text" class="validate" ng-model="vm.event.address">
@@ -60,51 +56,36 @@
 
 <div id="main" class="container">
   <div class="row">
-    <div class="col s6">
+    <div class="col s7">
 
-      <div class="container">
-        <div class="row">
-          <h2 class="title">Events</h2>
-          <h5>Select event to invite musicians</h5>
-        </div>
-
-        <div class="row">
-          <div class="">
-            <a ng-click="showForm=true"class="waves-effect waves-light btn">Create New Event</a>
-          </div>
-        </div>
-
-        <div class="row">
-
-          <div id="eventsById" class="" ng-repeat="event in vm.events">
-            <a ui-sref="bookEvent({id: event.id})"><h4>{{ event.title }}</h4></a>
-            <p><strong>Date: </strong>{{ event.date }} <strong>Time: </strong>{{ event.time }}</p>
-            <p><strong>Venue: </strong>{{ event.venue }}</p>
-            <p><strong>Address: </strong>{{  event.address }}<p>
-            <p><strong>Rehearsal Info: </strong>{{  event.notes }}</p>
-          </div>
-
-        </div>
+      <div class="row">
+        <h2 class="title">Events</h2>
+        <h5>Select an event to invite musicians</h5>
       </div>
+
+      <div class="row">
+          <a ng-click="showForm=true"class="waves-effect waves-light btn">Create New Event</a>
+      </div>
+
+      <div class="row">
+
+        <div id="eventsById" class="" ng-repeat="event in vm.events">
+          <a ui-sref="bookEvent({id: event.id})"><h4>{{ event.title }}</h4></a>
+          <p><strong>Date: </strong>{{ event.date }} <strong>Time: </strong>{{ event.time }}</p>
+          <p><strong>Venue: </strong>{{ event.venue }}</p>
+          <p><strong>Address: </strong>{{  event.address }}<p>
+          <p><strong>Rehearsal Info: </strong>{{  event.notes }}</p>
+        </div>
 
       </div>
 
-    <div class="container">
+    </div>
 
-      <div class="col s6">
-        <div class="row">
-          <h3 class="title">Browse Musicians</h3>
-          <form>
-            <div class="input-field">
-              <input id="search" type="search" ng-model="searchText">
-              <label for="search"><i class="material-icons">search</i></label>
-              <i class="material-icons">close</i>
-            </div>
-          </form>
-        </div>
+
+      <div class="col s5">
 
         <div class="row">
-          <div id="search" class="collection" ng-repeat="musician in vm.musicians | filter:search:strict">
+          <div id="search" class="collection" ng-repeat="musician in vm.musicians">
             <div class="collection-item avatar">
               <img src="{{ musician.imageURL }}" class="circle"/>
               <a ui-sref="profile({ id: musician.id })"><span>{{ musician.first }} {{ musician.last }}</span></a>
@@ -114,7 +95,7 @@
         </div>
 
 
-    </div>
+      </div>
 
     </div>
 

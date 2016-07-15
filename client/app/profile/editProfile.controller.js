@@ -12,14 +12,14 @@ class EditProfileComponent {
     if (this.musician) {
       console.log(this.musician);
       this.$http.post('/api/musicians', {
-        name: this.musician.first,
+        first: this.musician.first,
         last: this.musician.last,
-        name: this.musician.name,
+        instrument: this.musician.instrument,
         imageURL: this.musician.imageURL,
         adminNote: this.musician.adminNote,
         bio: this.musician.bio
-      }).then(() => {
-        this.$state.go('musician', {id: id})
+      }).then((result) => {
+        this.$state.go('profile', {id: result.data.id})
       });
     };
   }

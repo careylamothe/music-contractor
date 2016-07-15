@@ -4,59 +4,59 @@
 
   </div>
 
-  <form class="col s12" ng-submit="vm.submit()" method="post">
+  <form class="col s12">
 
     <div class="row">
       <div class="input-field col s6">
-        <input id="first" type="text" class="validate" ng-model="musicianForm.first">
+        <input id="first" type="text" class="validate" ng-model="vm.musician.first">
         <label class="title" for="name">First Name</label>
       </div>
     </div>
 
     <div class="row">
       <div class="input-field col s6">
-        <input id="last" type="text" class="validate" ng-model="musicianForm.last">
+        <input id="last" type="text" class="validate" ng-model="vm.musician.last">
         <label for="name">Last Name</label>
       </div>
     </div>
 
     <div class="row">
       <div class="input-field col s6">
-        <input id="email" type="email" class="validate" ng-model="musicianForm.email">
+        <input id="email" type="email" class="validate" ng-model="vm.musician.email">
         <label for="name">Email</label>
       </div>
     </div>
 
     <div class="row">
       <div class="input-field col s6">
-        <input id="main-instrument" type="text" class="validate" ng-model="musicianForm.main">
+        <input id="main-instrument" type="text" class="validate" ng-model="vm.musician.instrument">
         <label for="main-instrument">Main Instrument</label>
       </div>
     </div>
 
     <div class="row">
       <div class="input-field col s12">
-        <textarea id="other-instrments" class="materialize-textarea" ng-model="musicianForm.other"></textarea>
+        <textarea id="other-instrments" class="materialize-textarea" ng-model="vm.musician.other"></textarea>
         <label for="other-instruments">List additional instruments</label>
       </div>
     </div>
 
     <div class="row">
       <div class="input-field col s6">
-        <textarea id="bio" class="mateialize-textarea" ng-model="musicianForm.bio"></textarea>
+        <textarea id="bio" class="mateialize-textarea" ng-model="vm.musician.bio"></textarea>
         <label for="bio">Add a brief bio</label>
       </div>
     </div>
 
     <div class="row">
       <div class="input-field col s6">
-        <textarea id="image" type="text" ng-model="musicianForm.image"></textarea>
+        <textarea id="image" type="text" ng-model="vm.musician.image"></textarea>
         <label for="image">Image link</label>
       </div>
     </div>
 
     <div class="">
-      <a ng-click="" class="waves-effect waves-light btn">Submit</a>
+      <a ng-click="vm.submit()" class="waves-effect waves-light btn">Submit</a>
     </div>
 
   </form>

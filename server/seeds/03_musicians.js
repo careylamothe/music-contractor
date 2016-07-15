@@ -14,7 +14,7 @@ exports.seed = function(knex, Promise) {
           email: 'yoyo@careylamothe.com',
           imageURL: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQLrCKS6u95tS-oO8L31_jhC87JuxSjTS00ZdSOkBxGrhoqztHAXg',
           instrument: 'cello',
-          bio: 'Yo-Yo Ma is one of the most prominent cellist of the modern era and is an inspiration to many in the musical world. He has produced dozens of albums and has won 15 Grammy awards throughout his lifetime. Yo-Yo Ma has recorded various styles of music including classical, American folk music, and traditional Chinese melodies. '
+          bio: 'Yo-Yo Ma is one of the most prominent cellists of the modern era and is an inspiration to many in the musical world. He has produced dozens of albums and has won 15 Grammy awards throughout his lifetime. Yo-Yo Ma has recorded various styles of music including classical, American folk music, and traditional Chinese melodies. '
         }),
         knex('musicians').insert({
           id: 2,

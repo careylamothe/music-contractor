@@ -56,7 +56,7 @@ router.post('/:id/invite', function(req, res) {
             from: from_who,
             to: emails,
             subject: 'Upcoming gig',
-            html: req.body.message
+            html: req.body.message + "<a http://localhost:9000/Log in to Music Contractor for event details and accept or decline.</a>"
           }
 
           mailgun.messages().send(data, function(err, body) {

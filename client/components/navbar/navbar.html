@@ -8,6 +8,8 @@
           <li ng-repeat="item in nav.menu" ui-sref-active="active">
               <a ui-sref="{{item.state}}">{{item.title}}</a>
           </li>
+          <li ng-show="nav.isLoggedIn()" ui-serif-active="active"><a ui-sref="editProfile">New Profile </a></li>
+          <li ng-show="nav.isAdmin()" ui-serif-active="active"><a ui-sref="event">Events</a></li>
           <li ng-show="nav.isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
           <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="signup">Sign up</a></li>
           <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Login</a></li>

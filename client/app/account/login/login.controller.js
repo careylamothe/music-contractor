@@ -24,7 +24,7 @@ class LoginController {
         .then((user) => {
           console.log(user);
           // Logged in, redirect to home
-          this.$state.go('profile', { id: user._id});
+          this.$state.go('event')
         })
         // else if (organizer) {
         //

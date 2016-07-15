@@ -24,6 +24,11 @@ class ProfileComponent {
       })
     }
 
+    accept() {
+      musician.accept = false;
+
+    }
+
     removeProfile() {
       this.$http.delete('api/musicians' + currentId + 'delete')
       .then(response => {
