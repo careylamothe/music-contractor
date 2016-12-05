@@ -10,7 +10,6 @@ class EditProfileComponent {
 
   submit() {
     if (this.musician) {
-      console.log(this.musician);
       this.$http.post('/api/musicians', {
         first: this.musician.first,
         last: this.musician.last,

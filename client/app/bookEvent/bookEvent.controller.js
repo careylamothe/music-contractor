@@ -41,6 +41,7 @@ class bookEventComponent {
   }
 
   removeProfile(musician) {
+    var currentId = this.$stateParams.id
     this.$http.delete('')
   }
 

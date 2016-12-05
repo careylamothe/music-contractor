@@ -75,6 +75,7 @@
           <p><strong>Venue: </strong>{{ event.venue }}</p>
           <p><strong>Address: </strong>{{  event.address }}<p>
           <p><strong>Rehearsal Info: </strong>{{  event.notes }}</p>
+          <a href="#" ng-click="vm.deleteEvent({id: event.id})">Delete</a>
         </div>
 
       </div>

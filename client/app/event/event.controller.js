@@ -3,7 +3,6 @@
 
 class EventComponent {
   constructor($stateParams, $state, $http) {
-    this.message = 'Hello';
     this.$state = $state;
     this.events = [];
     this.musicians = [];
@@ -19,7 +18,7 @@ class EventComponent {
         time: this.event.time,
         venue: this.event.venue,
         address: this.event.address,
-        rehearsals: this.event.notes
+        notes: this.event.notes
       }).then(() => {
         this.$state.go('event', {id: id})
       });
@@ -27,7 +26,7 @@ class EventComponent {
   }
 
   $onInit() {
-    var currentId = this.$stateParams.id;
+    // var currentId = this.$stateParams.id;
 
     this.$http.get('api/events')
     .then((response) => {
@@ -38,6 +37,14 @@ class EventComponent {
     .then((response) => {
       this.musicians.push(...response.data);
     })
+  }
+
+  deleteEvent(anEvent) {
+console.log(anEvent);
+      this.$http.delete('/api/events/delete', + anEvent.id)
+      .then((response) => {
+        this.evens.push(...response.data);
+      })
   }
 
 }

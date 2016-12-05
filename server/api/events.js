@@ -122,8 +122,8 @@ router.put('/:id/update', function(req, res) {
   })
 });
 
-router.delete('/:id/delete', function(req, res) {
-  Events().where('id', req.params.user_id).first().del()
+router.delete('/delete', function(req, res) {
+  Events().where('id', req.body.event_id).first().del()
   .then(function() {
     res.json(events)
   })
