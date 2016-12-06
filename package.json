@@ -1,7 +1,7 @@
 {
   "name": "music-contractor",
   "version": "0.0.0",
-  "main": "server/app.js",
+  "main": "server/index.js",
   "dependencies": {
     "babel-polyfill": "^6.7.2",
     "babel-runtime": "^6.6.1",

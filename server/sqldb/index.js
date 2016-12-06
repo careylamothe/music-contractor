@@ -17,4 +17,8 @@ var db = {
 db.Thing = db.sequelize.import('../api/thing/thing.model');
 db.User = db.sequelize.import('../api/user/user.model');
 
+// db.sequelize.sync({
+    // force: true
+// });
+
 module.exports = db;

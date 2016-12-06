@@ -7,6 +7,12 @@ import {setTokenCookie} from '../auth.service';
 var router = express.Router();
 
 router
+
+  .get('/callback', passport.authenticate('google', {
+    failureRedirect: '/signup',
+    session: false
+  }), setTokenCookie)
+
   .get('/', passport.authenticate('google', {
     failureRedirect: '/signup',
     scope: [
@@ -14,10 +20,6 @@ router
       'email'
     ],
     session: false
-  }))
-  .get('/callback', passport.authenticate('google', {
-    failureRedirect: '/signup',
-    session: false
-  }), setTokenCookie);
+  }));
 
 export default router;

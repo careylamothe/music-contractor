@@ -1,7 +1,7 @@
 import passport from 'passport';
 import {Strategy as GoogleStrategy} from 'passport-google-oauth20';
 
-require('dotenv').load();
+
 
 export function setup(User, config) {
   passport.use(new GoogleStrategy({
@@ -10,11 +10,16 @@ export function setup(User, config) {
     callbackURL: "/auth/google/callback",
   },
   function(accessToken, refreshToken, profile, done) {
-    User.find({where:{'google.id': profile.id}})
+
+    console.log({profile});
+
+    User.find({ where: { 'google_id': profile.id } })
       .then(user => {
         if (user) {
           return done(null, user);
         }
+
+        console.log('no user found');
 
         user = User.build({
           name: profile.displayName,
@@ -22,8 +27,10 @@ export function setup(User, config) {
           role: 'user',
           username: profile.emails[0].value.split('@')[0],
           provider: 'google',
-          google: profile._json
+          google: profile._json,
+          google_id: profile.id
         });
+
         user.save()
           .then(user => done(null, user))
           .catch(err => done(err));
@@ -31,6 +38,9 @@ export function setup(User, config) {
 
 //insert id into organizer or musician table
 
-      .catch(err => done(err));
+      .catch(err => {
+        console.log('user.find failed', err);
+        done(err)
+      });
   }));
 }
